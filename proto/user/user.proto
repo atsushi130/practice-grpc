@@ -1,0 +1,28 @@
+
+syntax = "proto3";
+
+package user;
+
+import "user/gender.proto";
+import "google/protobuf/empty.proto";
+import "google/type/date.proto";
+
+message User {
+    string id = 1;
+    string name = 2;
+    uint32 age = 3;
+    Gender gender = 4;
+    google.type.Date birthday = 5;
+    google.type.Date created_at = 6;
+    google.type.Date updated_at = 7;
+    google.type.Date deleted_at = 8;
+}
+
+message Users {
+    repeated User users = 1;
+}
+
+service UserService {
+    rpc Users(google.protobuf.Empty) returns (User);
+    rpc AddUser(User) returns (google.protobuf.Empty);
+}
